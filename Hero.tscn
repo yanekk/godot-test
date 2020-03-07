@@ -1,0 +1,102 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/Sprites/Player/Idle0.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Player/Run4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Player/Run7.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Player/Run1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Player/Run0.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Player/Jump4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Player/Jump3.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Player/Run2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Player/Jump0.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Player/Run3.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/Player/Jump1.png" type="Texture" id=11]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Sprites/Tiles/Sky.png" type="Texture" id=13]
+[ext_resource path="res://Coin_Counter.gd" type="Script" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "jump_end",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "fall_end",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "jump_start",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "fall_start",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 13.0
+height = 32.0
+
+[node name="Hero" type="KinematicBody2D"]
+script = ExtResource( 12 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+margin_left = -320.977
+margin_top = 203.476
+margin_right = 319.023
+margin_bottom = 253.476
+color = Color( 0.231373, 0.231373, 0.231373, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coin_Counter_Label" type="Label" parent="Camera2D"]
+margin_left = 266.744
+margin_top = 208.861
+margin_right = 290.744
+margin_bottom = 222.861
+rect_scale = Vector2( 2, 2 )
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 640, 640 )
+
+[node name="Sky" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 13 )
+centered = false
+
+[node name="Coin_Counter" type="Node" parent="."]
+script = ExtResource( 14 )
