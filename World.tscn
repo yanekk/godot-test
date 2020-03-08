@@ -70,4 +70,4 @@ format = 1
 tile_data = PoolIntArray( 131081, 0, 196608, 131082, 0, 196609, 131083, 0, 196609, 131084, 0, 196609, 131085, 0, 196610 )
 
 [node name="Hero" parent="." instance=ExtResource( 1 )]
-position = Vector2( 64, 288 )
+position = Vector2( 64, 320 )
