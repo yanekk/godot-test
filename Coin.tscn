@@ -20,6 +20,7 @@ animations = [ {
 } ]
 
 [node name="Coin" type="Area2D"]
+collision_layer = 4
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true
